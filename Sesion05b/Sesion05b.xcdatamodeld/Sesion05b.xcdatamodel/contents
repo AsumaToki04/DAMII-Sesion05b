@@ -3,7 +3,7 @@
     <entity name="Escritor" representedClassName="Escritor" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="nombre" optional="YES" attributeType="String"/>
-        <relationship name="libros" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Libro" inverseName="escritor" inverseEntity="Libro"/>
+        <relationship name="libros" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Libro" inverseName="escritor" inverseEntity="Libro"/>
     </entity>
     <entity name="Libro" representedClassName="Libro" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
