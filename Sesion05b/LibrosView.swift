@@ -10,6 +10,7 @@ import SwiftUI
 struct LibrosView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var escritor: Escritor
+    @State private var contador: Int = 0
     
     var body: some View {
         VStack {
@@ -25,7 +26,23 @@ struct LibrosView: View {
                     }
                 }
             }
+            Button("Agregar libro") {
+                agregarLibro()
+            }
+            .padding()
+            .background(.blue)
+            .foregroundColor(.white)
+            .cornerRadius(8)
         }
         .navigationTitle(escritor.nombre ?? "Escritor")
+    }
+    
+    private func agregarLibro() {
+        let nuevoLibro = Libro(context: viewContext)
+        nuevoLibro.id = UUID()
+        nuevoLibro.nombre = "Libro \(contador)"
+        nuevoLibro.escritor = escritor
+        contador += 1
+        try? viewContext.save()
     }
 }
